@@ -335,7 +335,13 @@ for _,typename in ipairs({"real", "unsigned char", "char", "short", "int", "long
       declare = function(arg)
                    -- if it is a number we initialize here
                    local default = tonumber(interpretdefaultvalue(arg)) or 0
-                   return string.format("%s arg%d = %d;", typename, arg.i, tonumber(default))
+                   -- if it must be returned, do not expect in the input argument list
+                   if arg.returned then
+                       prefix = "narg++; "
+                   else 
+                       prefix = ""
+                   end
+                   return string.format("%s%s arg%d = %d;", prefix, typename, arg.i, tonumber(default))
                 end,
 
       check = function(arg, idx)
