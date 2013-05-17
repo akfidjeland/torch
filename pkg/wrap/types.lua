@@ -387,7 +387,7 @@ for _,typename in ipairs({"real", "unsigned char", "char", "short", "int", "long
                 end,
       
       postcall = function(arg)
-                    if arg.returned then
+                    if arg.returned or arg.creturned then
                        return string.format('lua_pushnumber(L, (lua_Number)arg%d);', arg.i)
                     end
                  end
