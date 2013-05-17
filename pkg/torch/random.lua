@@ -19,7 +19,7 @@ interface:wrap('manualSeed',
 
 interface:wrap('getRandomState',
                'THRandom_getState',
-               {{name="LongTensor", returned=true},
+               {{name="LongTensor", returned=true, default=true, method={default='nil'}},
                 {name="long", returned=true},
                 {name="long", returned=true}})
 
