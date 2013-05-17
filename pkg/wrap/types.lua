@@ -339,7 +339,9 @@ for _,typename in ipairs({"real", "unsigned char", "char", "short", "int", "long
                 end,
 
       check = function(arg, idx)
-                 return string.format("lua_isnumber(L, %d)", idx)
+                if not arg.returned then
+                  return string.format("lua_isnumber(L, %d)", idx)
+                end
               end,
 
       read = function(arg, idx)
