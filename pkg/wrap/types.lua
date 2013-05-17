@@ -336,7 +336,7 @@ for _,typename in ipairs({"real", "unsigned char", "char", "short", "int", "long
                    -- if it is a number we initialize here
                    local default = tonumber(interpretdefaultvalue(arg)) or 0
                    -- if it must be returned, do not expect in the input argument list
-                   if arg.returned then
+                   if arg.returned then -- TODO: might not be the way to do it: prevents from having arguments which are both input *and* output. But without this if, all arguments have to be given as input, too. Proof of concept: adding "or arg.creturned" here breaks print(torch.rand(5)), which I suppose is calling tostring() with such an input/output argument
                        prefix = "narg++; "
                    else 
                        prefix = ""
@@ -353,7 +353,7 @@ for _,typename in ipairs({"real", "unsigned char", "char", "short", "int", "long
               end,
 
       read = function(arg, idx)
-                if not arg.returned then
+                if not arg.returned then -- TODO: might not be the way to do it: prevents from having arguments which are both input *and* output. But without this if, all arguments have to be given as input.
                    return string.format("arg%d = (%s)lua_tonumber(L, %d);", arg.i, typename, idx)
                 end
              end,
