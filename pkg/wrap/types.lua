@@ -345,7 +345,9 @@ for _,typename in ipairs({"real", "unsigned char", "char", "short", "int", "long
               end,
 
       read = function(arg, idx)
-                return string.format("arg%d = (%s)lua_tonumber(L, %d);", arg.i, typename, idx)
+                if not arg.returned then
+                   return string.format("arg%d = (%s)lua_tonumber(L, %d);", arg.i, typename, idx)
+                end
              end,
 
       init = function(arg)
