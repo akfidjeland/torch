@@ -1,7 +1,8 @@
-#ifndef TH_RANDOM_INC
-#define TH_RANDOM_INC
+#ifndef TH_RANDOM_NUMBER_INC
+#define TH_RANDOM_NUMBER_INC
 
 #include "THGeneral.h"
+#include "THTensor.h"
 
 /* Initializes the random number generator with the current time (granularity: seconds) and returns the seed. */
 TH_API unsigned long THRandom_seed();
@@ -11,6 +12,12 @@ TH_API void THRandom_manualSeed(unsigned long the_seed_);
 
 /* Returns the starting seed used. */
 TH_API unsigned long THRandom_initialSeed();
+
+/* Returns the current RNG state. */
+TH_API void THRandom_getState(THLongTensor *ret, long *offset, long *left);
+
+/* Set the new state for the RNG. */
+TH_API void THRandom_setState(THLongTensor *src, long offset, long left);
 
 /* Generates a uniform 32 bits integer. */
 TH_API unsigned long THRandom_random();
