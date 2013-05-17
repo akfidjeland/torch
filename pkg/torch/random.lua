@@ -23,6 +23,12 @@ interface:wrap('getRandomState',
                 {name="long", returned=true},
                 {name="long", returned=true}})
 
+interface:wrap('mytest',
+               'THRandom_test',
+               {{name="long", returned=true},
+                {name="long", returned=true}})
+
+
 interface:wrap('setRandomState',
                'THRandom_setState',
                {{name="LongTensor"},

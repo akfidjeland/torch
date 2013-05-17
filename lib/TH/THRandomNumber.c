@@ -120,6 +120,10 @@ unsigned long THRandom_initialSeed()
   return the_initial_seed;
 }
 
+void THRandom_test(long *x, long *y) {
+    *x = 1;
+    *y = 2;
+}
 
 void THRandom_getState(THLongTensor* ret, long* offset, long* _left)
 {

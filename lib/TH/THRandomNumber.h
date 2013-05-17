@@ -18,6 +18,7 @@ TH_API void THRandom_getState(THLongTensor *ret, long *offset, long *left);
 
 /* Set the new state for the RNG. */
 TH_API void THRandom_setState(THLongTensor *src, long offset, long left);
+TH_API void THRandom_test(long * offset, long * left);
 
 /* Generates a uniform 32 bits integer. */
 TH_API unsigned long THRandom_random();
